@@ -66,6 +66,7 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
+
                 checkCollision(car);
 
                 car.move();
@@ -96,6 +97,19 @@ public class CarController {
             car.brake(brake);
         }
     }
+
+    public void startAllCars() {
+        for (Car car : cars) {
+            car.startEngine();
+        }
+    }
+
+    public void stopAllCars() {
+        for (Car car : cars) {
+            car.stopEngine();
+        }
+    }
+
     private void checkCollision(Car car) {
         Point position = car.getPosition();
         double direction = car.getDirection();
@@ -112,6 +126,37 @@ public class CarController {
             car.stopEngine();  // Stop the car
             car.setDirection(car.getDirection() + 180);  // Reverse direction
             car.startEngine();  // Start the car
+        }
+    }
+    void setTurboOn() {
+        for (Car car : cars) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOn();
+            }
+        }
+    }
+
+    void setTurboOff() {
+        for (Car car : cars) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOff();
+            }
+        }
+    }
+
+    void raiseBed(int angle) {
+        for (Car car : cars) {
+            if (car instanceof Scania) {
+                ((Scania) car).raiseBed(angle);
+            }
+        }
+    }
+
+    void lowerBed(int angle) {
+        for (Car car : cars) {
+            if (car instanceof Scania) {
+                ((Scania) car).lowerBed(angle);
+            }
         }
     }
 }
