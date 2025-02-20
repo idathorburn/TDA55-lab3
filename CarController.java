@@ -66,6 +66,9 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
+                if (car instanceof Scania && !((Scania) car).canDrive()) {
+                    continue; // Skip moving this car
+                }
 
                 checkCollision(car);
 
@@ -144,6 +147,15 @@ public class CarController {
         }
     }
 
+    public Scania getScania() {
+        for (Car car : cars) {
+            if (car instanceof Scania) {
+                return (Scania) car;
+            }
+        }
+        return null;
+    }
+
     void raiseBed(int angle) {
         for (Car car : cars) {
             if (car instanceof Scania) {
@@ -159,4 +171,5 @@ public class CarController {
             }
         }
     }
+
 }

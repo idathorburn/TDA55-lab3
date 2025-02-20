@@ -32,6 +32,7 @@ public class CarView extends JFrame{
     JSpinner bedAngleSpinner = new JSpinner();
     int bedAngleAmount = 0;
     JLabel bedAngleLabel = new JLabel("Bed angle");
+    JLabel currentBedAngleLabel = new JLabel("Current: 0");
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
@@ -72,9 +73,11 @@ public class CarView extends JFrame{
         bedAngleSpinner = new JSpinner(bedSpinnerModel);
         bedAngleSpinner.addChangeListener(e -> bedAngleAmount = (int) bedAngleSpinner.getValue());
 
-        bedAnglePanel.setLayout(new BorderLayout());
-        bedAnglePanel.add(bedAngleLabel, BorderLayout.PAGE_START);
-        bedAnglePanel.add(bedAngleSpinner, BorderLayout.PAGE_END);
+        bedAnglePanel.setLayout(new GridLayout(3, 1));
+        bedAnglePanel.add(bedAngleLabel);
+        bedAnglePanel.add(bedAngleSpinner);
+        bedAnglePanel.add(currentBedAngleLabel);
+
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(2, 1)); // Ensures vertical stacking
@@ -108,8 +111,14 @@ public class CarView extends JFrame{
         // ------- Action Listeners -------
         gasButton.addActionListener(e -> carC.gas(gasAmount));
         brakeButton.addActionListener(e -> carC.brake(gasAmount));
-        liftBedButton.addActionListener(e -> carC.raiseBed(bedAngleAmount));
-        lowerBedButton.addActionListener(e -> carC.lowerBed(bedAngleAmount));
+        liftBedButton.addActionListener(e -> {
+            carC.raiseBed(bedAngleAmount);
+            updateBedAngleDisplay();
+        });
+        lowerBedButton.addActionListener(e -> {
+            carC.lowerBed(bedAngleAmount);
+            updateBedAngleDisplay();
+        });
         startButton.addActionListener(e -> carC.startAllCars());
         stopButton.addActionListener(e -> carC.stopAllCars());
 
@@ -131,5 +140,12 @@ public class CarView extends JFrame{
 
     public int getWindowHeight() {
         return Y;
+    }
+
+    public void updateBedAngleDisplay() {
+        if (carC.getScania() != null) {
+            double currentAngle = carC.getScania().getBedAngle();
+            currentBedAngleLabel.setText("Current: " + currentAngle);
+        }
     }
 }
