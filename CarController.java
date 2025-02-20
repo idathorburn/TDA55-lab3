@@ -138,7 +138,6 @@ public class CarController {
             }
         }
     }
-
     void setTurboOff() {
         for (Car car : cars) {
             if (car instanceof Saab95) {
@@ -146,7 +145,6 @@ public class CarController {
             }
         }
     }
-
     public Scania getScania() {
         for (Car car : cars) {
             if (car instanceof Scania) {
@@ -155,7 +153,6 @@ public class CarController {
         }
         return null;
     }
-
     void raiseBed(int angle) {
         for (Car car : cars) {
             if (car instanceof Scania) {
@@ -163,7 +160,6 @@ public class CarController {
             }
         }
     }
-
     void lowerBed(int angle) {
         for (Car car : cars) {
             if (car instanceof Scania) {
@@ -171,5 +167,4 @@ public class CarController {
             }
         }
     }
-
 }
