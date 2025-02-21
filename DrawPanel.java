@@ -54,4 +54,5 @@ public class DrawPanel extends JPanel{
         }
         g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
     }
+
 }

@@ -38,16 +38,20 @@ public class CarController {
         Volvo240 volvo = new Volvo240();
         Saab95 saab = new Saab95();
         Scania scania = new Scania();
+        Volvo240 brokenVolvo = new Volvo240();
+
 
         // Set the start positions
         volvo.setPosition(new Point(0, 0));
         saab.setPosition(new Point(0, 100));
         scania.setPosition(new Point(0, 200));
+        brokenVolvo.setPosition(new Point(0, 0));
 
         // Add the cars to the list
         cc.cars.add(volvo);
         cc.cars.add(saab);
         cc.cars.add(scania);
+        cc.cars.add(brokenVolvo);
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
